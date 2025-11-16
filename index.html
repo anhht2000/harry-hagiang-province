@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ Đồ Lộ Trình Du Lịch Hà Giang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .routes-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .route-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .route-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .route-path {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .location-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .location-icon {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .location-content {
+            flex: 1;
+        }
+        
+        .location-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .location-note {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            font-style: italic;
+        }
+        
+        .distance {
+            min-width: 100px;
+            text-align: center;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 8px rgba(245, 87, 108, 0.3);
+        }
+        
+        .arrow-down {
+            text-align: center;
+            color: #3498db;
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        
+        .highlights {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .highlights h2 {
+            color: #d35400;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .highlight-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-card h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .highlight-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .highlight-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #34495e;
+        }
+        
+        .highlight-card li:before {
+            content: "📍";
+            position: absolute;
+            left: 0;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .summary-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .summary-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .summary-table tbody tr:hover {
+            background: #e3f2fd;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏔️ SƠ ĐỒ LỘNH TRÌNH DU LỊCH HÀ GIANG 🏔️</h1>
+        <div class="subtitle">Vòng Cung Cao Nguyên Đá Đồng Văn - UNESCO Global Geopark</div>
+        
+        <div class="routes-container">
+            <!-- TUYẾN ĐƯỜNG CHÍNH - VÒNG CUNG LỚN -->
+            <div class="route-section">
+                <div class="route-title">
+                    🔵 TUYẾN ĐƯỜNG CHÍNH - VÒNG CUNG CAO NGUYÊN ĐÁ
+                </div>
+                
+                <div class="route-path">
+                    <div class="location-item">
+                        <div class="location-icon">🏛️</div>
+                        <div class="location-content">
+                            <div class="location-name">Đồng Văn</div>
+                            <div class="location-note">Thị trấn cổ, chợ phiên, phố cổ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🚩</div>
+                        <div class="location-content">
+                            <div class="location-name">Lũng Cú (Cột cờ Lũng Cú)</div>
+                            <div class="location-note">Điểm cực Bắc Tổ quốc, đi qua Lô Lô Chải</div>
+                        </div>
+                        <div class="distance">26 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🏰</div>
+                        <div class="location-content">
+                            <div class="location-name">Nhà Vương (Dinh thự họ Vương)</div>
+                            <div class="location-note">Gần ngã ba Sủng Là, dinh thự của "Vua Mèo"</div>
+                        </div>
+                        <div class="distance">17 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">⛰️</div>
+                        <div class="location-content">
+                            <div class="location-name">Mèo Vạc</div>
+                            <div class="location-note">Đi qua đèo Mã Pì Lèng (cung đường hạnh phúc)</div>
+                        </div>
+                        <div class="distance">27 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🌸</div>
+                        <div class="location-content">
+                            <div class="location-name">Yên Minh</div>
+                            <div class="location-note">Đi qua Cổng Trời Mèo Vạc, vùng tam giác mạch</div>
+                        </div>
+                        <div class="distance">44 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🌳</div>
+                        <div class="location-content">
+                            <div class="location-name">Check-in Cây Cô Đơn</div>
+                            <div class="location-note">Điểm check-in nổi tiếng giữa Yên Minh và TP. Hà Giang</div>
+                        </div>
+                        <div class="distance">46 km</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TUYẾN ĐƯỜNG TỪ TP. HÀ GIANG ĐI LÊN -->
+            <div class="route-section">
+                <div class="route-title">
+                    🟢 TUYẾN ĐƯỜNG TỪ TP. HÀ GIANG ĐI LÊN
+                </div>
+                
+                <div class="route-path">
+                    <div class="location-item">
+                        <div class="location-icon">🏙️</div>
+                        <div class="location-content">
+                            <div class="location-name">TP. Hà Giang</div>
+                            <div class="location-note">Điểm xuất phát, ăn sáng/dừng chân</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">⛰️</div>
+                        <div class="location-content">
+                            <div class="location-name">Quản Bạ</div>
+                            <div class="location-note">Check-in Núi Đôi Cô Tiên (Núi Đôi Quản Bạ)</div>
+                        </div>
+                        <div class="distance">46 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🌸</div>
+                        <div class="location-content">
+                            <div class="location-name">Yên Minh</div>
+                            <div class="location-note">Có thể đi qua vùng Tam giác mạch (tháng 10-11)</div>
+                        </div>
+                        <div class="distance">46 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">🏛️</div>
+                        <div class="location-content">
+                            <div class="location-name">Đồng Văn</div>
+                            <div class="location-note">Cung đường mới từ Yên Minh, check-in gốc tam giác mạch</div>
+                        </div>
+                        <div class="distance">44 km</div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="location-item">
+                        <div class="location-icon">⛰️</div>
+                        <div class="location-content">
+                            <div class="location-name">Mèo Vạc</div>
+                            <div class="location-note">Đi qua Đèo Mã Pì Lèng, Hẻm Tu Sản</div>
+                        </div>
+                        <div class="distance">26 km</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- HIGHLIGHTS -->
+        <div class="highlights">
+            <h2>✨ ĐIỂM CHECK-IN & ĐỊA DANH NỔI BẬT</h2>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <h3>🎯 Điểm Check-in Hot</h3>
+                    <ul>
+                        <li>Núi Đôi Cô Tiên (Quản Bạ)</li>
+                        <li>Cây Cô Đơn (Yên Minh)</li>
+                        <li>Gốc Tam Giác Mạch (Yên Minh)</li>
+                        <li>Cổng Trời Mèo Vạc</li>
+                        <li>Đèo Mã Pì Lèng</li>
+                        <li>Hẻm Tu Sản</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3>🏛️ Di Tích Lịch Sử</h3>
+                    <ul>
+                        <li>Cột Cờ Lũng Cú (cực Bắc)</li>
+                        <li>Dinh Vua Mèo (Nhà Vương)</li>
+                        <li>Phố Cổ Đồng Văn</li>
+                        <li>Làng Lô Lô Chải</li>
+                        <li>Chợ Phiên Đồng Văn</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3>🌸 Mùa Hoa & Thiên Nhiên</h3>
+                    <ul>
+                        <li>Tam Giác Mạch (T10-T11)</li>
+                        <li>Cao nguyên đá Đồng Văn</li>
+                        <li>Sông Nho Quế</li>
+                        <li>Thung lũng Sủng Là</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUMMARY TABLE -->
+        <div style="margin-top: 40px;">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📊 BẢNG TỔNG HỢP KHOẢNG CÁCH</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Chặng Đường</th>
+                        <th>Khoảng Cách</th>
+                        <th>Điểm Nổi Bật</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TP. Hà Giang → Quản Bạ</td>
+                        <td><strong>46 km</strong></td>
+                        <td>Núi Đôi Cô Tiên, Cổng Trời</td>
+                    </tr>
+                    <tr>
+                        <td>Quản Bạ → Yên Minh</td>
+                        <td><strong>46 km</strong></td>
+                        <td>Vùng Tam Giác Mạch</td>
+                    </tr>
+                    <tr>
+                        <td>Yên Minh → Đồng Văn</td>
+                        <td><strong>44 km</strong></td>
+                        <td>Cây Cô Đơn, Cung đường mới</td>
+                    </tr>
+                    <tr>
+                        <td>Đồng Văn ↔ Lũng Cú</td>
+                        <td><strong>26 km</strong> (1 chiều)</td>
+                        <td>Cột Cờ, Lô Lô Chải</td>
+                    </tr>
+                    <tr>
+                        <td>Đồng Văn ↔ Nhà Vương</td>
+                        <td><strong>17 km</strong></td>
+                        <td>Dinh Vua Mèo, Ngã ba Sủng Là</td>
+                    </tr>
+                    <tr>
+                        <td>Đồng Văn → Mèo Vạc</td>
+                        <td><strong>26-27 km</strong></td>
+                        <td>Đèo Mã Pì Lèng, Hẻm Tu Sản</td>
+                    </tr>
+                    <tr>
+                        <td>Mèo Vạc → Yên Minh</td>
+                        <td><strong>44 km</strong></td>
+                        <td>Cổng Trời Mèo Vạc</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 15px; text-align: center;">
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">💡 GỢI Ý HÀNH TRÌNH</h3>
+            <p style="color: #34495e; font-size: 1.1em; line-height: 1.8;">
+                <strong>Hành trình 3-4 ngày:</strong> TP. Hà Giang → Quản Bạ → Yên Minh → Đồng Văn → Lũng Cú → Mèo Vạc (Mã Pì Lèng) → Về<br>
+                <strong>Tổng quãng đường:</strong> Khoảng 200-250 km (vòng cung hoàn chỉnh)<br>
+                <strong>Thời điểm đẹp nhất:</strong> Tháng 10-11 (Tam Giác Mạch), tháng 3-4 (hoa đào, hoa mận)
+            </p>
+        </div>
+    </div>
+</body>
+</html>
