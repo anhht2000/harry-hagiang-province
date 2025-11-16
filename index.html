@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sơ Đồ Lộ Trình Du Lịch Hà Giang</title>
+    <title>Hành Trình Hà Giang 2025 - By tuananh.dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,405 +13,1015 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            overflow-x: hidden;
         }
         
-        .container {
+        /* Header & Branding */
+        .header {
+            background: linear-gradient(135deg, rgba(15,32,39,0.98) 0%, rgba(44,83,100,0.98) 100%);
+            padding: 25px 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 3px solid #00d4ff;
+        }
+        
+        .brand-container {
             max-width: 1400px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,212,255,0.5);
+            animation: logoFloat 3s ease-in-out infinite;
+            font-weight: 800;
+            color: white;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        
+        .brand-text h1 {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            font-size: 2.2em;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .brand-text h1 .dev {
+            color: #00d4ff;
+            font-weight: 900;
+        }
+        
+        .brand-text p {
+            color: #00d4ff;
+            font-size: 0.9em;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            color: white;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,212,255,0.15);
+            padding: 12px 24px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,212,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(0,212,255,0.25);
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section with Real Image Background */
+        .hero {
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44,83,100,0.4)), 
+                url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1600') center/cover;
+            padding: 100px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,212,255,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50px, 50px) scale(1.2); opacity: 0.5; }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5em;
+            color: white;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+            font-weight: 900;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero p {
+            color: #00d4ff;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0,212,255,0.4);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: rgba(0,212,255,0.15);
+            backdrop-filter: blur(15px);
+            padding: 30px 45px;
+            border-radius: 20px;
+            border: 2px solid rgba(0,212,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-15px);
+            background: rgba(0,212,255,0.25);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 40px rgba(0,212,255,0.4);
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .stat-label {
+            color: white;
+            font-size: 1.1em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 50px;
+        }
+        
+        /* Photo Gallery Section */
+        .photo-gallery {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 60px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            text-align: center;
+            background: linear-gradient(135deg, #0f2027 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            font-weight: 900;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .gallery-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-card:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-card:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            color: white;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .gallery-desc {
+            color: #00d4ff;
+            font-size: 0.95em;
+        }
+        
+        /* Route Cards */
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 50px;
+            margin-bottom: 70px;
+        }
+        
+        .route-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .route-card:hover {
+            transform: translateY(-15px);
+        }
+        
+        .route-header {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            padding: 35px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .route-header::before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(0,212,255,0.15);
+            border-radius: 50%;
+            top: -100px;
+            right: -70px;
+        }
+        
+        .route-header h2 {
+            font-size: 2em;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+        }
+        
+        .route-header p {
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-size: 1.05em;
+        }
+        
+        .route-content {
+            padding: 35px;
+        }
+        
+        .location-card {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 28px;
+            margin-bottom: 22px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 20px;
+            border-left: 6px solid #00d4ff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .location-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,212,255,0.1) 0%, rgba(0,153,204,0.1) 100%);
+            top: 0;
+            left: -100%;
+            transition: left 0.5s ease;
+        }
+        
+        .location-card:hover::before {
+            left: 0;
+        }
+        
+        .location-card:hover {
+            transform: translateX(12px);
+            box-shadow: 0 12px 35px rgba(0,212,255,0.3);
+        }
+        
+        .location-illustration {
+            min-width: 85px;
+            height: 85px;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
         
-        h1 {
-            text-align: center;
-            color: #2c3e50;
+        .location-info {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .location-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #0f2027;
             margin-bottom: 10px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
-        .subtitle {
+        .location-description {
+            color: #475569;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+        
+        .distance-badge {
+            min-width: 95px;
+            padding: 16px 28px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            border-radius: 35px;
+            font-weight: 700;
+            font-size: 1.15em;
             text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 40px;
+            box-shadow: 0 6px 18px rgba(0,212,255,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .route-connector {
+            text-align: center;
+            margin: 12px 0;
+            color: #00d4ff;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        
+        /* Highlights Section */
+        .highlights-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            margin: 70px 0;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0,212,255,0.2);
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0,212,255,0.3);
+            border-color: #00d4ff;
+        }
+        
+        .highlight-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-card h3 {
+            color: #0f2027;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .highlight-list {
+            list-style: none;
+        }
+        
+        .highlight-list li {
+            padding: 14px 0;
+            padding-left: 35px;
+            color: #334155;
+            position: relative;
+            border-bottom: 1px solid rgba(0,212,255,0.2);
+            font-size: 1.05em;
+        }
+        
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight-list li::before {
+            content: "📍";
+            position: absolute;
+            left: 0;
             font-size: 1.2em;
         }
         
-        .routes-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .route-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .route-title {
-            font-size: 1.8em;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .route-path {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .location-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
+        /* Table Section */
+        .table-section {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            margin: 70px 0;
         }
         
-        .location-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 35px;
         }
         
-        .location-icon {
-            min-width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .data-table thead {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+        }
+        
+        .data-table th {
+            padding: 22px;
+            color: white;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+        
+        .data-table td {
+            padding: 22px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.05em;
+        }
+        
+        .data-table tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        .data-table tbody tr:hover {
+            background: linear-gradient(135deg, rgba(0,212,255,0.1) 0%, rgba(0,153,204,0.1) 100%);
+            transform: scale(1.01);
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            padding: 60px;
+            border-radius: 30px;
+            margin: 70px 0;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 35px;
+        }
+        
+        .tip-card {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0,212,255,0.2);
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,212,255,0.25);
+            border-color: #00d4ff;
+        }
+        
+        .tip-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        
+        .tip-card h3 {
+            color: #0f2027;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .tip-card p {
+            color: #475569;
+            line-height: 1.9;
+            font-size: 1.05em;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 100%);
+            padding: 70px 50px 35px;
+            margin-top: 90px;
+            border-top: 4px solid #00d4ff;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            color: #00d4ff;
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #e0f2fe;
+            line-height: 2.2;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+        }
+        
+        .footer-section a:hover {
+            color: #00d4ff;
+            transform: translateX(8px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0,212,255,0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 1.4em;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0,212,255,0.3);
         }
         
-        .location-content {
-            flex: 1;
+        .social-icon:hover {
+            background: #00d4ff;
+            transform: translateY(-8px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 25px rgba(0,212,255,0.4);
         }
         
-        .location-name {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .location-note {
-            color: #7f8c8d;
-            font-size: 0.95em;
-            font-style: italic;
-        }
-        
-        .distance {
-            min-width: 100px;
+        .footer-bottom {
             text-align: center;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding-top: 35px;
+            border-top: 1px solid rgba(0,212,255,0.3);
+            color: #e0f2fe;
+            font-size: 1.05em;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.95) 0%, rgba(0,153,204,0.95) 100%);
             color: white;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1em;
-            box-shadow: 0 4px 8px rgba(245, 87, 108, 0.3);
+            padding: 18px 30px;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0,212,255,0.5);
+            font-weight: 700;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            font-size: 1.05em;
         }
         
-        .arrow-down {
-            text-align: center;
-            color: #3498db;
-            font-size: 2em;
-            margin: 10px 0;
-        }
-        
-        .highlights {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-        }
-        
-        .highlights h2 {
-            color: #d35400;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .highlight-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .highlight-card h3 {
-            color: #e74c3c;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        
-        .highlight-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .highlight-card li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            color: #34495e;
-        }
-        
-        .highlight-card li:before {
-            content: "📍";
-            position: absolute;
-            left: 0;
-        }
-        
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .summary-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .summary-table th,
-        .summary-table td {
-            padding: 15px;
-            text-align: left;
-        }
-        
-        .summary-table tbody tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .summary-table tbody tr:hover {
-            background: #e3f2fd;
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-            }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8em; }
+            .route-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 25px; }
+            .header { padding: 20px 25px; }
+            .brand-container { flex-direction: column; gap: 25px; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏔️ SƠ ĐỒ LỘNH TRÌNH DU LỊCH HÀ GIANG 🏔️</h1>
-        <div class="subtitle">Vòng Cung Cao Nguyên Đá Đồng Văn - UNESCO Global Geopark</div>
+    <!-- Header -->
+    <div class="header">
+        <div class="brand-container">
+            <div class="logo">
+                <div class="logo-icon">&lt;/&gt;</div>
+                <div class="brand-text">
+                    <h1>tuan<span class="dev">anh.dev</span></h1>
+                    <p>Khám Phá Hà Giang Cùng Developer</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    📧 hello@tuananh.dev
+                </div>
+                <div class="contact-item">
+                    🌐 tuananh.dev
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="year-badge">⭐ HÀNH TRÌNH 2025 ⭐</div>
+        <h1>🏔️ KHÁM PHÁ HÀ GIANG 🏔️</h1>
+        <p>Vòng Cung Cao Nguyên Đá Đồng Văn - UNESCO Global Geopark</p>
         
-        <div class="routes-container">
-            <!-- TUYẾN ĐƯỜNG CHÍNH - VÒNG CUNG LỚN -->
-            <div class="route-section">
-                <div class="route-title">
-                    🔵 TUYẾN ĐƯỜNG CHÍNH - VÒNG CUNG CAO NGUYÊN ĐÁ
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Km Cung Đường</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Huyện Cao Nguyên</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Điểm Check-in</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3-4</div>
+                <div class="stat-label">Ngày Lý Tưởng</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Photo Gallery -->
+        <!-- <div class="photo-gallery">
+            <h2 class="section-title">📸 Thư Viện Hình Ảnh Hà Giang 2025</h2>
+            <p style="text-align: center; color: #64748b; font-size: 1.1em; margin-bottom: 20px;">
+                Những khung cảnh tuyệt đẹp đang chờ đợi bạn khám phá
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800" alt="Đèo Mã Pì Lèng">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Đèo Mã Pì Lèng</div>
+                        <div class="gallery-desc">Tứ đại đỉnh đèo hùng vĩ nhất Việt Nam</div>
+                    </div>
                 </div>
                 
-                <div class="route-path">
-                    <div class="location-item">
-                        <div class="location-icon">🏛️</div>
-                        <div class="location-content">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=800" alt="Cột Cờ Lũng Cú">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cột Cờ Lũng Cú</div>
+                        <div class="gallery-desc">Điểm cực Bắc thiêng liêng của Tổ quốc</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800" alt="Tam Giác Mạch">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Mùa Tam Giác Mạch</div>
+                        <div class="gallery-desc">Sắc hồng thơ mộng khắp núi đồi</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=800" alt="Núi Đôi Quản Bạ">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Núi Đôi Quản Bạ</div>
+                        <div class="gallery-desc">Biểu tượng kỳ vĩ của Hà Giang</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800" alt="Sông Nho Quế">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Sông Nho Quế</div>
+                        <div class="gallery-desc">Dòng sông xanh ngọc bích huyền thoại</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Ruộng Bậc Thang">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Ruộng Bậc Thang</div>
+                        <div class="gallery-desc">Kiệt tác của thiên nhiên và con người</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800" alt="Phố Cổ Đồng Văn">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Phố Cổ Đồng Văn</div>
+                        <div class="gallery-desc">Di sản văn hóa bảo tồn nguyên vẹn</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Cổng Trời Quản Bạ">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cổng Trời Quản Bạ</div>
+                        <div class="gallery-desc">Nơi giao thoa giữa đất và trời</div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Route Cards -->
+        <div class="route-grid">
+            <!-- Route 1 -->
+            <div class="route-card">
+                <div class="route-header">
+                    <h2>🔵 VÒNG CUNG CAO NGUYÊN ĐÁ</h2>
+                    <p>Lộ trình chính qua 4 huyện: Đồng Văn - Mèo Vạc - Yên Minh - Quản Bạ</p>
+                </div>
+                <div class="route-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🏛️</div>
+                        <div class="location-info">
                             <div class="location-name">Đồng Văn</div>
-                            <div class="location-note">Thị trấn cổ, chợ phiên, phố cổ</div>
+                            <div class="location-description">Thị trấn cổ, phố cổ đặc trưng, chợ phiên sầm uất</div>
                         </div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🚩</div>
-                        <div class="location-content">
-                            <div class="location-name">Lũng Cú (Cột cờ Lũng Cú)</div>
-                            <div class="location-note">Điểm cực Bắc Tổ quốc, đi qua Lô Lô Chải</div>
+                    <div class="location-card">
+                        <div class="location-illustration">🚩</div>
+                        <div class="location-info">
+                            <div class="location-name">Lũng Cú</div>
+                            <div class="location-description">Cột cờ Tổ quốc, điểm cực Bắc 1.470m, qua Lô Lô Chải</div>
                         </div>
-                        <div class="distance">26 km</div>
+                        <div class="distance-badge">26 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🏰</div>
-                        <div class="location-content">
-                            <div class="location-name">Nhà Vương (Dinh thự họ Vương)</div>
-                            <div class="location-note">Gần ngã ba Sủng Là, dinh thự của "Vua Mèo"</div>
+                    <div class="location-card">
+                        <div class="location-illustration">🏰</div>
+                        <div class="location-info">
+                            <div class="location-name">Nhà Vương (Dinh Vua Mèo)</div>
+                            <div class="location-description">Di tích quốc gia, kiến trúc độc đáo, gần ngã ba Sủng Là</div>
                         </div>
-                        <div class="distance">17 km</div>
+                        <div class="distance-badge">17 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">⛰️</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">⛰️</div>
+                        <div class="location-info">
                             <div class="location-name">Mèo Vạc</div>
-                            <div class="location-note">Đi qua đèo Mã Pì Lèng (cung đường hạnh phúc)</div>
+                            <div class="location-description">Qua đèo Mã Pì Lèng - "Cung đường hạnh phúc"</div>
                         </div>
-                        <div class="distance">27 km</div>
+                        <div class="distance-badge">27 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🌸</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🌸</div>
+                        <div class="location-info">
                             <div class="location-name">Yên Minh</div>
-                            <div class="location-note">Đi qua Cổng Trời Mèo Vạc, vùng tam giác mạch</div>
+                            <div class="location-description">Qua Cổng Trời, vùng tam giác mạch nổi tiếng (T10-11)</div>
                         </div>
-                        <div class="distance">44 km</div>
+                        <div class="distance-badge">44 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🌳</div>
-                        <div class="location-content">
-                            <div class="location-name">Check-in Cây Cô Đơn</div>
-                            <div class="location-note">Điểm check-in nổi tiếng giữa Yên Minh và TP. Hà Giang</div>
+                    <div class="location-card">
+                        <div class="location-illustration">🌳</div>
+                        <div class="location-info">
+                            <div class="location-name">Cây Cô Đơn</div>
+                            <div class="location-description">Điểm check-in siêu hot, đường về TP. Hà Giang</div>
                         </div>
-                        <div class="distance">46 km</div>
+                        <div class="distance-badge">46 km</div>
                     </div>
                 </div>
             </div>
             
-            <!-- TUYẾN ĐƯỜNG TỪ TP. HÀ GIANG ĐI LÊN -->
-            <div class="route-section">
-                <div class="route-title">
-                    🟢 TUYẾN ĐƯỜNG TỪ TP. HÀ GIANG ĐI LÊN
+            <!-- Route 2 -->
+            <div class="route-card">
+                <div class="route-header">
+                    <h2>🟢 TUYẾN TỪ TP. HÀ GIANG</h2>
+                    <p>Lộ trình xuất phát từ thành phố đi lên các huyện miền núi</p>
                 </div>
-                
-                <div class="route-path">
-                    <div class="location-item">
-                        <div class="location-icon">🏙️</div>
-                        <div class="location-content">
+                <div class="route-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🏙️</div>
+                        <div class="location-info">
                             <div class="location-name">TP. Hà Giang</div>
-                            <div class="location-note">Điểm xuất phát, ăn sáng/dừng chân</div>
+                            <div class="location-description">Điểm xuất phát, cột mốc KM0, chuẩn bị hành trang</div>
                         </div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">⛰️</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">⛰️</div>
+                        <div class="location-info">
                             <div class="location-name">Quản Bạ</div>
-                            <div class="location-note">Check-in Núi Đôi Cô Tiên (Núi Đôi Quản Bạ)</div>
+                            <div class="location-description">Núi Đôi Cô Tiên huyền thoại, Cổng Trời 1.500m</div>
                         </div>
-                        <div class="distance">46 km</div>
+                        <div class="distance-badge">46 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🌸</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🌸</div>
+                        <div class="location-info">
                             <div class="location-name">Yên Minh</div>
-                            <div class="location-note">Có thể đi qua vùng Tam giác mạch (tháng 10-11)</div>
+                            <div class="location-description">Rừng thông Yên Minh, vùng tam giác mạch, thơ mộng</div>
                         </div>
-                        <div class="distance">46 km</div>
+                        <div class="distance-badge">46 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">🏛️</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🏛️</div>
+                        <div class="location-info">
                             <div class="location-name">Đồng Văn</div>
-                            <div class="location-note">Cung đường mới từ Yên Minh, check-in gốc tam giác mạch</div>
+                            <div class="location-description">Phố cổ, chợ phiên, gốc tam giác mạch check-in</div>
                         </div>
-                        <div class="distance">44 km</div>
+                        <div class="distance-badge">44 km</div>
                     </div>
                     
-                    <div class="arrow-down">↓</div>
+                    <div class="route-connector">↓</div>
                     
-                    <div class="location-item">
-                        <div class="location-icon">⛰️</div>
-                        <div class="location-content">
+                    <div class="location-card">
+                        <div class="location-illustration">🛣️</div>
+                        <div class="location-info">
                             <div class="location-name">Mèo Vạc</div>
-                            <div class="location-note">Đi qua Đèo Mã Pì Lèng, Hẻm Tu Sản</div>
+                            <div class="location-description">Đèo Mã Pì Lèng, Hẻm Tu Sản sâu nhất Đông Nam Á</div>
                         </div>
-                        <div class="distance">26 km</div>
+                        <div class="distance-badge">26 km</div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- HIGHLIGHTS -->
-        <div class="highlights">
-            <h2>✨ ĐIỂM CHECK-IN & ĐỊA DANH NỔI BẬT</h2>
-            <div class="highlight-grid">
+        <!-- Highlights -->
+        <div class="highlights-section">
+            <h2 class="section-title">✨ Điểm Nhấn Hành Trình 2025</h2>
+            <div class="highlights-grid">
                 <div class="highlight-card">
-                    <h3>🎯 Điểm Check-in Hot</h3>
-                    <ul>
+                    <div class="highlight-icon">🎯</div>
+                    <h3>Check-in Hot Nhất</h3>
+                    <ul class="highlight-list">
                         <li>Núi Đôi Cô Tiên (Quản Bạ)</li>
                         <li>Cây Cô Đơn (Yên Minh)</li>
-                        <li>Gốc Tam Giác Mạch (Yên Minh)</li>
-                        <li>Cổng Trời Mèo Vạc</li>
+                        <li>Gốc Tam Giác Mạch</li>
+                        <li>Cổng Trời Quản Bạ</li>
                         <li>Đèo Mã Pì Lèng</li>
                         <li>Hẻm Tu Sản</li>
+                        <li>Dốc Thẩm Mã</li>
                     </ul>
                 </div>
                 
                 <div class="highlight-card">
-                    <h3>🏛️ Di Tích Lịch Sử</h3>
-                    <ul>
-                        <li>Cột Cờ Lũng Cú (cực Bắc)</li>
-                        <li>Dinh Vua Mèo (Nhà Vương)</li>
+                    <div class="highlight-icon">🏛️</div>
+                    <h3>Di Tích Lịch Sử</h3>
+                    <ul class="highlight-list">
+                        <li>Cột Cờ Lũng Cú (1.470m)</li>
+                        <li>Dinh Vua Mèo (Di tích quốc gia)</li>
                         <li>Phố Cổ Đồng Văn</li>
                         <li>Làng Lô Lô Chải</li>
                         <li>Chợ Phiên Đồng Văn</li>
+                        <li>Nhà của Pao</li>
                     </ul>
                 </div>
                 
                 <div class="highlight-card">
-                    <h3>🌸 Mùa Hoa & Thiên Nhiên</h3>
-                    <ul>
-                        <li>Tam Giác Mạch (T10-T11)</li>
-                        <li>Cao nguyên đá Đồng Văn</li>
-                        <li>Sông Nho Quế</li>
+                    <div class="highlight-icon">🌸</div>
+                    <h3>Thiên Nhiên Tuyệt Đẹp</h3>
+                    <ul class="highlight-list">
+                        <li>Tam Giác Mạch (T10-11)</li>
+                        <li>Cao nguyên đá UNESCO</li>
+                        <li>Sông Nho Quế xanh ngọc</li>
                         <li>Thung lũng Sủng Là</li>
+                        <li>Rừng thông Yên Minh</li>
+                        <li>Ruộng bậc thang Hoàng Su Phì</li>
                     </ul>
                 </div>
             </div>
         </div>
         
-        <!-- SUMMARY TABLE -->
-        <div style="margin-top: 40px;">
-            <h2 style="color: #2c3e50; margin-bottom: 20px;">📊 BẢNG TỔNG HỢP KHOẢNG CÁCH</h2>
-            <table class="summary-table">
+        <!-- Table -->
+        <div class="table-section">
+            <h2 class="section-title">📊 Bảng Tổng Hợp Khoảng Cách 2025</h2>
+            <table class="data-table">
                 <thead>
                     <tr>
                         <th>Chặng Đường</th>
@@ -420,52 +1031,137 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>TP. Hà Giang → Quản Bạ</td>
+                        <td><strong>TP. Hà Giang → Quản Bạ</strong></td>
                         <td><strong>46 km</strong></td>
-                        <td>Núi Đôi Cô Tiên, Cổng Trời</td>
+                        <td>Núi Đôi Cô Tiên, Cổng Trời 1.500m</td>
                     </tr>
                     <tr>
-                        <td>Quản Bạ → Yên Minh</td>
+                        <td><strong>Quản Bạ → Yên Minh</strong></td>
                         <td><strong>46 km</strong></td>
-                        <td>Vùng Tam Giác Mạch</td>
+                        <td>Vùng Tam Giác Mạch, Rừng Thông</td>
                     </tr>
                     <tr>
-                        <td>Yên Minh → Đồng Văn</td>
+                        <td><strong>Yên Minh → Đồng Văn</strong></td>
                         <td><strong>44 km</strong></td>
                         <td>Cây Cô Đơn, Cung đường mới</td>
                     </tr>
                     <tr>
-                        <td>Đồng Văn ↔ Lũng Cú</td>
+                        <td><strong>Đồng Văn ↔ Lũng Cú</strong></td>
                         <td><strong>26 km</strong> (1 chiều)</td>
-                        <td>Cột Cờ, Lô Lô Chải</td>
+                        <td>Cột Cờ 1.470m, Lô Lô Chải</td>
                     </tr>
                     <tr>
-                        <td>Đồng Văn ↔ Nhà Vương</td>
+                        <td><strong>Đồng Văn ↔ Nhà Vương</strong></td>
                         <td><strong>17 km</strong></td>
                         <td>Dinh Vua Mèo, Ngã ba Sủng Là</td>
                     </tr>
                     <tr>
-                        <td>Đồng Văn → Mèo Vạc</td>
+                        <td><strong>Đồng Văn → Mèo Vạc</strong></td>
                         <td><strong>26-27 km</strong></td>
                         <td>Đèo Mã Pì Lèng, Hẻm Tu Sản</td>
                     </tr>
                     <tr>
-                        <td>Mèo Vạc → Yên Minh</td>
+                        <td><strong>Mèo Vạc → Yên Minh</strong></td>
                         <td><strong>44 km</strong></td>
-                        <td>Cổng Trời Mèo Vạc</td>
+                        <td>Cổng Trời Mèo Vạc, Sông Nho Quế</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         
-        <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 15px; text-align: center;">
-            <h3 style="color: #2c3e50; margin-bottom: 15px;">💡 GỢI Ý HÀNH TRÌNH</h3>
-            <p style="color: #34495e; font-size: 1.1em; line-height: 1.8;">
-                <strong>Hành trình 3-4 ngày:</strong> TP. Hà Giang → Quản Bạ → Yên Minh → Đồng Văn → Lũng Cú → Mèo Vạc (Mã Pì Lèng) → Về<br>
-                <strong>Tổng quãng đường:</strong> Khoảng 200-250 km (vòng cung hoàn chỉnh)<br>
-                <strong>Thời điểm đẹp nhất:</strong> Tháng 10-11 (Tam Giác Mạch), tháng 3-4 (hoa đào, hoa mận)
-            </p>
+        <!-- Tips -->
+        <div class="tips-section">
+            <h2 class="section-title">💡 Kinh Nghiệm Từ tuananh.dev - 2025</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🗓️</div>
+                    <h3>Thời Gian Lý Tưởng</h3>
+                    <p><strong>Tháng 10-11/2025:</strong> Mùa tam giác mạch nở rộ, phong cảnh đẹp nhất năm.</p>
+                    <p><strong>Tháng 3-4/2025:</strong> Hoa đào, hoa mận nở, thời tiết dịu mát.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">🏍️</div>
+                    <h3>Phương Tiện</h3>
+                    <p>Xe máy tốt nhất cho cung đường đèo núi. Thuê xe có tài xế nếu chưa quen địa hình. Tránh mùa mưa (6-8) vì đường trơn trượt.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">🎒</div>
+                    <h3>Chuẩn Bị</h3>
+                    <p>Áo ấm (núi cao -5°C), kem chống nắng SPF50+, mũ, thuốc men, tiền mặt (ATM ít). Pin dự phòng cho điện thoại.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">🏨</div>
+                    <h3>Lưu Trú 2025</h3>
+                    <p>Đặt trước tại Đồng Văn, Mèo Vạc, Yên Minh. Homestay 200-300k/người/đêm. Khách sạn 500k-1tr/phòng. Đặt sớm vào mùa cao điểm.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">📱</div>
+                    <h3>Liên Hệ</h3>
+                    <p><strong>Website:</strong> tuananh.dev<br>
+                    <strong>Email:</strong> hello@tuananh.dev<br>
+                    Tư vấn lộ trình miễn phí!</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon">💰</div>
+                    <h3>Chi Phí 2025</h3>
+                    <p>3-4 triệu/người cho 3-4 ngày (xe, ăn, ở, vé). Thuê xe máy 150-200k/ngày. Ăn uống 150-250k/ngày. Vé tham quan 30-50k/người.</p>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🏔️ tuananh.dev</h3>
+                <p>Developer & Travel Enthusiast chia sẻ kinh nghiệm khám phá Hà Giang với hơn 5 năm phượt miền núi.</p>
+                <p style="margin-top: 15px;"><strong>Năm 2025:</strong> Cập nhật thông tin mới nhất về lộ trình, giá cả và địa điểm.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>📞 Kết Nối</h3>
+                <p>🌐 Website: tuananh.dev</p>
+                <p>✉️ Email: hello@tuananh.dev</p>
+                <p>💻 GitHub: github.com/tuananh</p>
+                <p>📸 Instagram: @tuananh.dev</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>🗺️ Nội Dung</h3>
+                <a href="#gallery">Thư viện hình ảnh</a>
+                <a href="#routes">Lộ trình chi tiết</a>
+                <a href="#highlights">Điểm đến nổi bật</a>
+                <a href="#tips">Kinh nghiệm du lịch</a>
+                <a href="#table">Bảng khoảng cách</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>👥 Theo Dõi</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">💬</a>
+                    <a href="#" class="social-icon">🐦</a>
+                </div>
+                <p style="margin-top: 20px;">Cập nhật thông tin Hà Giang 2025 mới nhất!</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 tuananh.dev. All Rights Reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Built with 💙 for Ha Giang Lovers | Updated for 2025</p>
+        </div>
+    </div>
+    
+    <!-- Watermark -->
+    <div class="watermark">
+        ⭐ tuananh.dev
+    </div>
 </body>
-</html>
+<
