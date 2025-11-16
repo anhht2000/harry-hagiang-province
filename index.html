@@ -12,10 +12,16 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         /* Header & Branding */
@@ -531,10 +537,35 @@
             margin: 70px 0;
         }
         
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 35px;
+            position: relative;
+        }
+        
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #0099cc;
+        }
+        
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 35px;
+            min-width: 600px;
         }
         
         .data-table thead {
@@ -702,13 +733,303 @@
             font-size: 1.05em;
         }
         
+        /* Tablet & Mobile Responsive */
+        @media (max-width: 1024px) {
+            .route-grid { 
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            
+            .highlights-grid,
+            .tips-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8em; }
-            .route-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 25px; }
-            .header { padding: 20px 25px; }
-            .brand-container { flex-direction: column; gap: 25px; }
-            .gallery-grid { grid-template-columns: 1fr; }
+            /* Header */
+            .header { 
+                padding: 20px; 
+            }
+            
+            .brand-container { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .brand-text h1 { 
+                font-size: 1.8em; 
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            
+            /* Hero */
+            .hero { 
+                padding: 60px 20px; 
+            }
+            
+            .hero h1 { 
+                font-size: 2.5em;
+                line-height: 1.2;
+            }
+            
+            .hero p { 
+                font-size: 1.2em; 
+            }
+            
+            .year-badge {
+                font-size: 1.1em;
+                padding: 10px 25px;
+            }
+            
+            .stats { 
+                gap: 20px; 
+            }
+            
+            .stat-card { 
+                padding: 20px 30px;
+                min-width: 140px;
+            }
+            
+            .stat-number { 
+                font-size: 2.2em; 
+            }
+            
+            .stat-label { 
+                font-size: 0.95em; 
+            }
+            
+            /* Container */
+            .container { 
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+            
+            /* Section Titles */
+            .section-title { 
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            
+            /* Photo Gallery */
+            .photo-gallery,
+            .highlights-section,
+            .table-section,
+            .tips-section {
+                padding: 40px 25px;
+                margin-bottom: 40px;
+                border-radius: 20px;
+            }
+            
+            .gallery-grid { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .gallery-card {
+                height: 300px;
+            }
+            
+            .gallery-title {
+                font-size: 1.2em;
+            }
+            
+            /* Route Cards */
+            .route-grid { 
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            
+            .route-card {
+                border-radius: 20px;
+            }
+            
+            .route-header {
+                padding: 25px 20px;
+            }
+            
+            .route-header h2 {
+                font-size: 1.5em;
+            }
+            
+            .route-header p {
+                font-size: 0.95em;
+            }
+            
+            .route-content {
+                padding: 25px 20px;
+            }
+            
+            .location-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+                gap: 15px;
+            }
+            
+            .location-illustration {
+                min-width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+            
+            .location-name {
+                font-size: 1.3em;
+            }
+            
+            .location-description {
+                font-size: 0.95em;
+            }
+            
+            .distance-badge {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+            
+            .route-connector {
+                font-size: 1.8em;
+                margin: 8px 0;
+            }
+            
+            /* Highlights */
+            .highlights-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .highlight-card,
+            .tip-card {
+                padding: 25px 20px;
+            }
+            
+            .highlight-icon,
+            .tip-icon {
+                font-size: 2.5em;
+            }
+            
+            .highlight-card h3,
+            .tip-card h3 {
+                font-size: 1.3em;
+            }
+            
+            /* Table */
+            .table-section {
+                overflow-x: auto;
+            }
+            
+            .data-table {
+                min-width: 600px;
+                font-size: 0.9em;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 15px 12px;
+                font-size: 0.95em;
+            }
+            
+            /* Footer */
+            .footer {
+                padding: 50px 20px 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.2em;
+            }
+            
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.95em;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            /* Watermark */
+            .watermark {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero p {
+                font-size: 1em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .stat-card {
+                width: 100%;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .brand-text h1 {
+                font-size: 1.5em;
+            }
+            
+            .route-header h2 {
+                font-size: 1.3em;
+            }
+            
+            .location-name {
+                font-size: 1.2em;
+            }
+            
+            .gallery-card {
+                height: 250px;
+            }
+            
+            .watermark {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin: 20px auto;
+                width: fit-content;
+                display: none;
+            }
+            
+            .footer-bottom {
+                padding-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -725,7 +1046,7 @@
             </div>
             <div class="contact-info">
                 <div class="contact-item">
-                    📧 hello@tuananh.dev
+                    📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec8489808083ac98998d828d8284c288899a">[email&#160;protected]</a>
                 </div>
                 <div class="contact-item">
                     🌐 tuananh.dev
@@ -1021,7 +1342,11 @@
         <!-- Table -->
         <div class="table-section">
             <h2 class="section-title">📊 Bảng Tổng Hợp Khoảng Cách 2025</h2>
-            <table class="data-table">
+            <p style="text-align: center; color: #64748b; font-size: 0.95em; margin-bottom: 20px;">
+                💡 Vuốt sang trái/phải để xem đầy đủ trên thiết bị di động
+            </p>
+            <div class="table-wrapper">
+                <table class="data-table">
                 <thead>
                     <tr>
                         <th>Chặng Đường</th>
@@ -1067,6 +1392,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
         
         <!-- Tips -->
@@ -1102,7 +1428,7 @@
                     <div class="tip-icon">📱</div>
                     <h3>Liên Hệ</h3>
                     <p><strong>Website:</strong> tuananh.dev<br>
-                    <strong>Email:</strong> hello@tuananh.dev<br>
+                    <strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="670f020b0b08271312060906090f49030211">[email&#160;protected]</a><br>
                     Tư vấn lộ trình miễn phí!</p>
                 </div>
                 
@@ -1127,7 +1453,7 @@
             <div class="footer-section">
                 <h3>📞 Kết Nối</h3>
                 <p>🌐 Website: tuananh.dev</p>
-                <p>✉️ Email: hello@tuananh.dev</p>
+                <p>✉️ Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a121f1616153a0e0f1b141b1412541e1f0c">[email&#160;protected]</a></p>
                 <p>💻 GitHub: github.com/tuananh</p>
                 <p>📸 Instagram: @tuananh.dev</p>
             </div>
@@ -1164,4 +1490,4 @@
         ⭐ tuananh.dev
     </div>
 </body>
-<
+</ht
