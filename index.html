@@ -34,6 +34,7 @@
             z-index: 1000;
             backdrop-filter: blur(15px);
             border-bottom: 3px solid #00d4ff;
+            transition: all 0.3s ease;
         }
         
         .brand-container {
@@ -747,37 +748,42 @@
         }
         
         @media (max-width: 768px) {
-            /* Header */
+            /* Header - Compact Mobile Version */
             .header { 
-                padding: 20px; 
+                padding: 15px 20px; 
             }
             
             .brand-container { 
-                flex-direction: column; 
-                gap: 20px; 
-                text-align: center;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px; 
+                text-align: left;
             }
             
             .logo {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 10px;
             }
             
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                border-radius: 10px;
+            }
+            
             .brand-text h1 { 
-                font-size: 1.8em; 
+                font-size: 1.3em;
+                margin-bottom: 0;
+            }
+            
+            .brand-text p {
+                display: none; /* Hide tagline on mobile */
             }
             
             .contact-info {
-                flex-direction: column;
-                width: 100%;
-                gap: 12px;
-            }
-            
-            .contact-item {
-                width: 100%;
-                justify-content: center;
-                padding: 10px 20px;
-                font-size: 0.9em;
+                display: none; /* Hide contact - available in footer */
             }
             
             /* Hero */
@@ -981,6 +987,20 @@
         
         @media (max-width: 480px) {
             /* Extra small screens */
+            .header {
+                padding: 12px 15px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .brand-text h1 {
+                font-size: 1.1em;
+            }
+            
             .hero h1 {
                 font-size: 2em;
             }
@@ -1490,4 +1510,4 @@
         ⭐ tuananh.dev
     </div>
 </body>
-</ht
+</html>
